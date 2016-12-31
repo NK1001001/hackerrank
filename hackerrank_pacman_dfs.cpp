@@ -1,4 +1,8 @@
-//hackerrank pacman dfs
+/*
+* hackerrank pacman dfs
+* My C++ solution to hackerrank pacman dfs challenge - won all games !!! :) 
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>
