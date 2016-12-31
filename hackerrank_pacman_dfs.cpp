@@ -25,14 +25,9 @@ bool isValidStep(int r, int c, int pr, int pc, int fr, int fc, bool visited[][gr
 	if (g[pr][pc] == '%' || pr >= r || pc >= c || pr < 1 || pc < 1 || visited[pr][pc]) {
 		return false;
 	}
-
 	return true;
 }
 
-void internal_dfs()
-{
-
-}
 void printRoute(mii &m, ii coor, int cnt)
 {
 	if (m[coor] == coor) {
@@ -58,7 +53,7 @@ void dfs(int r, int c, int pacman_r, int pacman_c, int food_r, int food_c, vecto
 	stk.push(make_pair(pacman_r, pacman_c));
 	//vii visited;
 	bool visited[gridMaxRowSize][gridMaxColumnSize] = { false };
-	//visited.emplace_back(make_pair(pacman_r, pacman_c));
+	
 	visited[pacman_r][pacman_c] = true;
 	route.emplace(make_pair(ii(pacman_r, pacman_c), ii(pacman_r, pacman_c)));
 	vii explored;
@@ -68,14 +63,11 @@ void dfs(int r, int c, int pacman_r, int pacman_c, int food_r, int food_c, vecto
 		explored.emplace_back(i);
 		stk.pop();
 		if (i == ii(food_r, food_c)) {
-		//	route.emplace(make_pair(i, i));
-			//printRoute(route, route[i], 1);
 			break;
 		}
 		if (isValidStep(r, c, i.first - 1, i.second, food_r, food_c, visited, grid)) {
 			markStep(i.first-1, i.second, visited, i, route, stk);
 		}
-
 		if (isValidStep(r, c, i.first, i.second - 1, food_r, food_c, visited, grid )) {
 			markStep(i.first, i.second - 1, visited, i, route, stk);
 		}
@@ -85,7 +77,6 @@ void dfs(int r, int c, int pacman_r, int pacman_c, int food_r, int food_c, vecto
 		if (isValidStep(r, c, i.first + 1, i.second, food_r, food_c, visited, grid )) {
 			markStep(i.first + 1, i.second, visited, i, route, stk);
 		}
-
 	}
 	cout << explored.size() << endl;
 	for (auto &i : explored) {
@@ -117,12 +108,10 @@ int main(void) {
 		"%.-----------------%",
 		"%%%%%%%%%%%%%%%%%%%%"
 	};
-
 	/*for (int i = 0; i<r; i++) {
 		string s; cin >> s;
 		grid.push_back(s);
 	}*/
-
 	dfs(r, c, pacman_r, pacman_c, food_r, food_c, grid);
 	cin.get();
 	return 0;
