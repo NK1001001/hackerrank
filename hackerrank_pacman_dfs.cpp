@@ -3,6 +3,7 @@
 * My C++ solution to hackerrank pacman dfs challenge - won all games !!! :) 
 */
 
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -16,8 +17,10 @@ using vi = std::vector<int>;
 using vii = std::vector<ii>;
 using mii = std::map<ii, ii>;
 using stackii = std::stack<ii>;
+static const int gridMaxColumnSize = 40;
+static const int gridMaxRowSize = 40;
 
-bool isValidStep(int r, int c, int pr, int pc, int fr, int fc, bool visited[][40], vector<string> &g)
+bool isValidStep(int r, int c, int pr, int pc, int fr, int fc, bool visited[][gridMaxColumnSize], vector<string> &g)
 {
 	if (g[pr][pc] == '%' || pr >= r || pc >= c || pr < 1 || pc < 1 || visited[pr][pc]) {
 		return false;
@@ -41,7 +44,7 @@ void printRoute(mii &m, ii coor, int cnt)
 	cout << coor.first << " " << coor.second << endl;
 }
 
-void markStep(int pacman_r, int pacman_c, bool visited[][40], ii i, mii &route, stackii &stk)
+void markStep(int pacman_r, int pacman_c, bool visited[][gridMaxColumnSize], ii i, mii &route, stackii &stk)
 {
 	visited[pacman_r][pacman_c] = true;
 	route.emplace(ii(pacman_r, pacman_c), i);
@@ -54,7 +57,7 @@ void dfs(int r, int c, int pacman_r, int pacman_c, int food_r, int food_c, vecto
 	mii route;
 	stk.push(make_pair(pacman_r, pacman_c));
 	//vii visited;
-	bool visited[40][40] = { false };
+	bool visited[gridMaxRowSize][gridMaxColumnSize] = { false };
 	//visited.emplace_back(make_pair(pacman_r, pacman_c));
 	visited[pacman_r][pacman_c] = true;
 	route.emplace(make_pair(ii(pacman_r, pacman_c), ii(pacman_r, pacman_c)));
@@ -69,17 +72,17 @@ void dfs(int r, int c, int pacman_r, int pacman_c, int food_r, int food_c, vecto
 			//printRoute(route, route[i], 1);
 			break;
 		}
-		if (isValidStep(r, c, i.first - 1, i.second, food_r, food_c, visited, grid)) { //grid[pacman_r - 1][pacman_c])) {
+		if (isValidStep(r, c, i.first - 1, i.second, food_r, food_c, visited, grid)) {
 			markStep(i.first-1, i.second, visited, i, route, stk);
 		}
 
-		if (isValidStep(r, c, i.first, i.second - 1, food_r, food_c, visited, grid )) {//grid[pacman_r][pacman_c - 1])) {
+		if (isValidStep(r, c, i.first, i.second - 1, food_r, food_c, visited, grid )) {
 			markStep(i.first, i.second - 1, visited, i, route, stk);
 		}
-		if (isValidStep(r, c, i.first, i.second+1, food_r, food_c, visited, grid )) {//grid[pacman_r][pacman_c+1])) {
+		if (isValidStep(r, c, i.first, i.second+1, food_r, food_c, visited, grid )) {
 			markStep(i.first, i.second + 1, visited, i, route, stk);
 		}
-		if (isValidStep(r, c, i.first + 1, i.second, food_r, food_c, visited, grid )) {// grid[pacman_r + 1][pacman_c])) {
+		if (isValidStep(r, c, i.first + 1, i.second, food_r, food_c, visited, grid )) {
 			markStep(i.first + 1, i.second, visited, i, route, stk);
 		}
 
@@ -90,6 +93,7 @@ void dfs(int r, int c, int pacman_r, int pacman_c, int food_r, int food_c, vecto
 	}
 	printRoute(route, ii(food_r, food_c), 0);
 }
+
 int main(void) {
 
 	int r, c, pacman_r, pacman_c, food_r, food_c;
