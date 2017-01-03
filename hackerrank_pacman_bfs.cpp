@@ -24,6 +24,7 @@ bool isValidStep(int r, int c, int pr, int pc, int fr, int fc, bool visited[][gr
 	return true;
 }
 
+static
 void printRoute(mii &m, ii coor, int cnt)
 {
 	if (m[coor] == coor) {
