@@ -27,8 +27,8 @@ public:
     queriesNum_(queriesNum),
     nodeNum_(nodeNum+1),
     edgeNum_(edgeNum),
-    adjList_(nodeNum_),
-    dist_(nodeNum_, MaxInt)
+    adjList_(nodeNum+1),
+    dist_(nodeNum+1, MaxInt)
     {
     }
     Graph(const Graph& g){}
