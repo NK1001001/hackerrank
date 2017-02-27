@@ -19,3 +19,8 @@ def has_cycle(head):
         it = head.next
         fast_iter = fast_iter.next.next
     return 0
+
+Class Graph:
+   def __init__():
+       #do somehting
+
