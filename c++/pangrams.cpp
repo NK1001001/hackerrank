@@ -18,7 +18,7 @@ map<char, int> createDict()
         dict.emplace(i, 0);
     }
     for(auto &i : dict) {
-        cout << " char is: " << i.first << " freq is: " << i.second<<  endl;
+        //cout << " char is: " << i.first << " freq is: " << i.second<<  endl;
     }
     return dict;
 }
@@ -40,6 +40,7 @@ bool isPangram(const string & str)
         }
     }
     for(auto &i : dict) {
+		//cout << "in dict: " << i.first << ". Appears: " << i.second << " " << endl;
         if(i.second == 0 ) {
             return false;
         }
