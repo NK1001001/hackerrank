@@ -14,7 +14,7 @@
 #include <map>
 #include <set>
 #include <queue>
-
+#define mp make_pair
 
 using namespace std;
 using vi = vector<int>;
@@ -39,8 +39,8 @@ public:
     ~Graph() {}
     void addEdge(int from, int to, int w) {
         
-        adjList_[from].emplace_back(ii(w, to));
-        adjList_[to].emplace_back(ii(w, from));
+        adjList_[from].emplace_back(mp(w, to));
+        adjList_[to].emplace_back(mp(w, from));
     }
     vii getNeighbours(int n) {
         return adjList_[n];
@@ -90,17 +90,17 @@ void Graph::dijkstra(int src)
 //        if (d == dist_[u]) {
     		for(int i = 0 ; i < (int)adjList_[u].size(); ++i) {
     			auto v = adjList_[u][i];
-                if(visited_[v.second]) {
-                    continue;
-                }
+                	if(visited_[v.second]) {
+                  	 	continue;
+                	}
     			if(dist_[v.second] > dist_[u] + v.first) {
                     //pq.erase(ii(dist_[v.second], v.second));
-                    dist_[v.second] = dist_[u] + v.first;
+                    		dist_[v.second] = dist_[u] + v.first;
 //                    pq.push(ii(dist_[v.second], v.second));
-					if(!in_queue_[v.second]) {
-                    	q_.push(ii(dist_[v.second], v.second));
-						in_queue_[v.second] = 1;
-					}
+				if(!in_queue_[v.second]) {
+                    			q_.push(mp(dist_[v.second], v.second));
+					in_queue_[v.second] = 1;
+				}
                     //pq.emplace(ii(dist_[v.second], v.second));
     			}
             }
