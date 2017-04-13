@@ -32,8 +32,8 @@ public:
     ~Graph() {}
     void addEdge(int from, int to, int w) {
 
-        adjList_[from].emplace_back(ii(w, to));
-        adjList_[to].emplace_back(ii(w, from));
+        adjList_[from].emplace_back(make_pair((w, to)));
+        adjList_[to].emplace_back(make_pair((w, from)));
     }
     vii getNeighbours(int n) {
         return adjList_[n];
