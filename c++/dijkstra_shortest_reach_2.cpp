@@ -17,11 +17,12 @@ using vi = vector<int>;
 using ii = pair<int, int>;
 using vii = vector<ii>;
 const int max_int = 1 << 20; //numeric_limits<int>::max();
-
+const int Max_nodes = 3000;
+const int Max_edges = Max_nodes * Max_nodes/2;
 
 class Graph{
 public:
-    Graph(int nodes = 3000, int edges = 3000*3000/2):
+    Graph(int nodes = Max_nodes, int edges = Max_edges):
         nodes_(nodes+1),
         edges_(edges),
         dist_(nodes+1, max_int),
