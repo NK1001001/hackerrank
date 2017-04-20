@@ -60,15 +60,18 @@ void Graph::dijkstra(int src)
     while(!q_.empty()) {
         auto front = q_.top();  q_.pop();
         int d = dist_[front.second], u = front.second;
+		if(d != front.first) {
+			continue;
+		}
         in_queue_[u] = 0;
             for(int i = 0 ; i < (int)adjList_[u].size(); ++i) {
                 auto v = adjList_[u][i];
                 if(dist_[v.second] > dist_[u] + v.first) {
                     dist_[v.second] = dist_[u] + v.first;
-                    if(!in_queue_[v.second]) {
+        //            if(!in_queue_[v.second]) {
                         q_.push(make_pair(dist_[v.second], v.second));
-                        in_queue_[v.second] = 1;
-                    }
+         //              in_queue_[v.second] = 1;
+          //          }
                 }
             }
     }
